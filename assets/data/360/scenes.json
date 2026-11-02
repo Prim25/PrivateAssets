@@ -1,0 +1,195 @@
+
+{
+  "version": 1,
+  "firstScene": "depanGedung",
+  "panoramaBase": "https://prim25.github.io/PrivateAssets/assets/images/360/",
+  "shortcuts": [
+    {"sceneId": "depanGedung", "label": "Halaman depan"},
+    {"sceneId": "depanMall", "label": "Mall kampus"},
+    {"sceneId": "menujuParkiran", "label": "Area parkir"}
+  ],
+  "floors": [],
+  "scenes": [
+    {
+      "id": "depanGedung",
+      "title": "Halaman Depan",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/depan_gedung_unpri.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -4.0584, "yaw": 166.6648, "sceneId": "gerbangMasuk"}
+      ]
+    },
+    {
+      "id": "gerbangMasuk",
+      "title": "Gerbang Masuk",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/gerbang_masuk.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -3.5365, "yaw": 97.5148, "sceneId": "depanBgFen"},
+        {"pitch": -1.0462, "yaw": -173.8182, "sceneId": "masukGedung"},
+        {"pitch": -7.1513, "yaw": -82.6201, "sceneId": "depanGedung"}
+      ]
+    },
+    {
+      "id": "masukGedung",
+      "title": "Akses Masuk Gedung · 01",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/gerbang_masuk_2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -3.1611, "yaw": 7.3874, "sceneId": "masukGedung2"}
+      ]
+    },
+    {
+      "id": "masukGedung2",
+      "title": "Akses Masuk Gedung · 02",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/gerbang_masuk_3.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -12.0437, "yaw": -3.4443, "sceneId": "gerbangMasuk"},
+        {"pitch": -3.1627, "yaw": 176.2244, "sceneId": "depanMall"}
+      ]
+    },
+    {
+      "id": "depanBgFen",
+      "title": "Depan Warkop Bang Fen",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/depan_bg_fen.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -3.7617, "yaw": -178.8291, "sceneId": "gerbangMasuk"}
+      ]
+    },
+    {
+      "id": "menujuParkiran",
+      "title": "Menuju Parkiran",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/menuju_parkir_dan_pintu_keluar.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -2.4776, "yaw": -177.332, "sceneId": "depanMall"},
+        {"pitch": -9.2471, "yaw": -81.3103, "sceneId": "masukParkirBawah"},
+        {"pitch": -6.8105, "yaw": -60.781, "sceneId": "masukParkirAtas"}
+      ]
+    },
+    {
+      "id": "masukParkirBawah",
+      "title": "Akses Parkir Bawah",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/masuk_parkir_bawah.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -4.1796, "yaw": -170.7752, "sceneId": "depanMall"},
+        {"pitch": -3.34, "yaw": 134.8562, "sceneId": "gerbangKeluar"}
+      ]
+    },
+    {
+      "id": "masukParkirAtas",
+      "title": "Akses Parkir Atas",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/masuk_parkir_atas.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -3.6346, "yaw": 171.2225, "sceneId": "gerbangKeluar"}
+      ]
+    },
+    {
+      "id": "gerbangKeluar",
+      "title": "Gerbang Keluar",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/gerbang_keluar.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -13.5934, "yaw": -129.6601, "sceneId": "gerbangKeluar2"},
+        {"pitch": -4.2703, "yaw": -75.2067, "sceneId": "depanMall"},
+        {"pitch": -5.9249, "yaw": -13.9365, "sceneId": "masukParkirBawah"}
+      ]
+    },
+    {
+      "id": "gerbangKeluar2",
+      "title": "Gerbang Keluar · 02",
+      "area": "Area Outdoor",
+      "image": "outdoor_kampus/gerbang_keluar_2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -2.224, "yaw": -111.1191, "sceneId": "gerbangKeluar"}
+      ]
+    },
+    {
+      "id": "depanMall",
+      "title": "Depan Mall",
+      "area": "Mall",
+      "image": "mall/pintu_masuk_mall.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -3.6497, "yaw": -176.7949, "sceneId": "masukGedung2"},
+        {"pitch": -4.6197, "yaw": 4.5933, "sceneId": "menujuParkiran"},
+        {"pitch": -0.6391, "yaw": -85.53, "sceneId": "lobiMall"}
+      ]
+    },
+    {
+      "id": "lobiMall",
+      "title": "Lobi Mall",
+      "area": "Mall",
+      "image": "mall/pintu_masuk_mall_4.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -3.3416, "yaw": 178.1289, "sceneId": "panggungMall"},
+        {"pitch": -9.5703, "yaw": -0.1391, "sceneId": "depanMall"},
+        {"pitch": -1.4519, "yaw": 88.2823, "sceneId": "lobiMall2"}
+      ]
+    },
+    {
+      "id": "panggungMall",
+      "title": "Panggung Mall",
+      "area": "Mall",
+      "image": "mall/pintu_masuk_mall_2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -8.3828, "yaw": 3.6571, "sceneId": "lobiMall"}
+      ]
+    },
+    {
+      "id": "lobiMall2",
+      "title": "Lobi Mall · 02",
+      "area": "Mall",
+      "image": "mall/pintu_masuk_mall_3.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {"pitch": -1.1405, "yaw": 121.4223, "sceneId": "panggungMall"},
+        {"pitch": -3.5262, "yaw": -163.1805, "sceneId": "depanMall"}
+      ]
+    }
+  ]
+}
