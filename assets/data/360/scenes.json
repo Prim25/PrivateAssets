@@ -1,12 +1,11 @@
-
 {
   "version": 1,
   "firstScene": "depanGedung",
   "panoramaBase": "https://prim25.github.io/PrivateAssets/assets/images/360/",
   "shortcuts": [
-    {"sceneId": "depanGedung", "label": "Halaman depan"},
-    {"sceneId": "depanMall", "label": "Mall kampus"},
-    {"sceneId": "menujuParkiran", "label": "Area parkir"}
+    { "sceneId": "depanGedung", "label": "Halaman depan" },
+    { "sceneId": "depanMall", "label": "Mall kampus" },
+    { "sceneId": "menujuParkiran", "label": "Area parkir" }
   ],
   "floors": [],
   "scenes": [
@@ -19,7 +18,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -4.0584, "yaw": 166.6648, "sceneId": "gerbangMasuk"}
+        { "pitch": -4.0584, "yaw": 166.6648, "sceneId": "gerbangMasuk" }
       ]
     },
     {
@@ -31,9 +30,9 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -3.5365, "yaw": 97.5148, "sceneId": "depanBgFen"},
-        {"pitch": -1.0462, "yaw": -173.8182, "sceneId": "masukGedung"},
-        {"pitch": -7.1513, "yaw": -82.6201, "sceneId": "depanGedung"}
+        { "pitch": -3.5365, "yaw": 97.5148, "sceneId": "depanBgFen" },
+        { "pitch": -1.0462, "yaw": -173.8182, "sceneId": "masukGedung" },
+        { "pitch": -7.1513, "yaw": -82.6201, "sceneId": "depanGedung" }
       ]
     },
     {
@@ -45,7 +44,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -3.1611, "yaw": 7.3874, "sceneId": "masukGedung2"}
+        { "pitch": -3.1611, "yaw": 7.3874, "sceneId": "masukGedung2" }
       ]
     },
     {
@@ -57,8 +56,8 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -12.0437, "yaw": -3.4443, "sceneId": "gerbangMasuk"},
-        {"pitch": -3.1627, "yaw": 176.2244, "sceneId": "depanMall"}
+        { "pitch": -12.0437, "yaw": -3.4443, "sceneId": "gerbangMasuk" },
+        { "pitch": -3.1627, "yaw": 176.2244, "sceneId": "depanMall" }
       ]
     },
     {
@@ -70,7 +69,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -3.7617, "yaw": -178.8291, "sceneId": "gerbangMasuk"}
+        { "pitch": -3.7617, "yaw": -178.8291, "sceneId": "gerbangMasuk" }
       ]
     },
     {
@@ -82,9 +81,9 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -2.4776, "yaw": -177.332, "sceneId": "depanMall"},
-        {"pitch": -9.2471, "yaw": -81.3103, "sceneId": "masukParkirBawah"},
-        {"pitch": -6.8105, "yaw": -60.781, "sceneId": "masukParkirAtas"}
+        { "pitch": -2.4776, "yaw": -177.332, "sceneId": "depanMall" },
+        { "pitch": -9.2471, "yaw": -81.3103, "sceneId": "masukParkirBawah" },
+        { "pitch": -6.8105, "yaw": -60.781, "sceneId": "masukParkirAtas" }
       ]
     },
     {
@@ -96,8 +95,8 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -4.1796, "yaw": -170.7752, "sceneId": "depanMall"},
-        {"pitch": -3.34, "yaw": 134.8562, "sceneId": "gerbangKeluar"}
+        { "pitch": -4.1796, "yaw": -170.7752, "sceneId": "depanMall" },
+        { "pitch": -3.34, "yaw": 134.8562, "sceneId": "gerbangKeluar" }
       ]
     },
     {
@@ -109,7 +108,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -3.6346, "yaw": 171.2225, "sceneId": "gerbangKeluar"}
+        { "pitch": -3.6346, "yaw": 171.2225, "sceneId": "gerbangKeluar" }
       ]
     },
     {
@@ -121,9 +120,9 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -13.5934, "yaw": -129.6601, "sceneId": "gerbangKeluar2"},
-        {"pitch": -4.2703, "yaw": -75.2067, "sceneId": "depanMall"},
-        {"pitch": -5.9249, "yaw": -13.9365, "sceneId": "masukParkirBawah"}
+        { "pitch": -13.5934, "yaw": -129.6601, "sceneId": "gerbangKeluar2" },
+        { "pitch": -4.2703, "yaw": -75.2067, "sceneId": "depanMall" },
+        { "pitch": -5.9249, "yaw": -13.9365, "sceneId": "masukParkirBawah" }
       ]
     },
     {
@@ -135,7 +134,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -2.224, "yaw": -111.1191, "sceneId": "gerbangKeluar"}
+        { "pitch": -2.224, "yaw": -111.1191, "sceneId": "gerbangKeluar" }
       ]
     },
     {
@@ -147,9 +146,9 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -3.6497, "yaw": -176.7949, "sceneId": "masukGedung2"},
-        {"pitch": -4.6197, "yaw": 4.5933, "sceneId": "menujuParkiran"},
-        {"pitch": -0.6391, "yaw": -85.53, "sceneId": "lobiMall"}
+        { "pitch": -3.6497, "yaw": -176.7949, "sceneId": "masukGedung2" },
+        { "pitch": -4.6197, "yaw": 4.5933, "sceneId": "menujuParkiran" },
+        { "pitch": -0.6391, "yaw": -85.53, "sceneId": "lobiMall" }
       ]
     },
     {
@@ -161,9 +160,9 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -3.3416, "yaw": 178.1289, "sceneId": "panggungMall"},
-        {"pitch": -9.5703, "yaw": -0.1391, "sceneId": "depanMall"},
-        {"pitch": -1.4519, "yaw": 88.2823, "sceneId": "lobiMall2"}
+        { "pitch": -3.3416, "yaw": 178.1289, "sceneId": "panggungMall" },
+        { "pitch": -9.5703, "yaw": -0.1391, "sceneId": "depanMall" },
+        { "pitch": -1.4519, "yaw": 88.2823, "sceneId": "lobiMall2" }
       ]
     },
     {
@@ -174,9 +173,7 @@
       "pitch": 0,
       "yaw": 0,
       "hfov": 100,
-      "hotSpots": [
-        {"pitch": -8.3828, "yaw": 3.6571, "sceneId": "lobiMall"}
-      ]
+      "hotSpots": [{ "pitch": -8.3828, "yaw": 3.6571, "sceneId": "lobiMall" }]
     },
     {
       "id": "lobiMall2",
@@ -187,8 +184,84 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {"pitch": -1.1405, "yaw": 121.4223, "sceneId": "panggungMall"},
-        {"pitch": -3.5262, "yaw": -163.1805, "sceneId": "depanMall"}
+        { "pitch": -1.1405, "yaw": 121.4223, "sceneId": "panggungMall" },
+        { "pitch": -3.5262, "yaw": -163.1805, "sceneId": "depanMall" }
+      ]
+    },
+
+    {
+      "_comment": "Lantai 10",
+      "id": "lobiLantai10",
+      "title": "Lobi Lantai 10",
+      "area": "Lantai 10",
+      "image": "./assets/360/lantai_10/lantai10_2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -4.1204,
+          "yaw": -177.6612,
+          "sceneId": "lobiLantai10_2"
+        }
+      ]
+    },
+    {
+      "id": "lobiLantai10_2",
+      "title": "Lobi Lantai 10 · 02",
+      "area": "Lantai 10",
+      "image": "./assets/360/lantai_10/lantai10_3.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -5.3547,
+          "yaw": 154.4805,
+          "sceneId": "lobiLantai10_3"
+        },
+        {
+          "pitch": -7.5249,
+          "yaw": -25.1849,
+          "sceneId": "lobiLantai10"
+        },
+        {
+          "pitch": -6.059,
+          "yaw": 25.986,
+          "sceneId": "taman"
+        }
+      ]
+    },
+    {
+      "id": "lobiLantai10_3",
+      "title": "Lobi Lantai 10 · 03",
+      "area": "Lantai 10",
+      "image": "./assets/360/lantai_10/lantai10_4.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -4.9169,
+          "yaw": 177.8906,
+          "sceneId": "lobiLantai10_2"
+        }
+      ]
+    },
+    {
+      "id": "taman",
+      "title": "Taman Lantai 10",
+      "area": "Lantai 10",
+      "image": "./assets/360/lantai_10/taman.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -9.2617,
+          "yaw": -178.9525,
+          "sceneId": "lobiLantai10_2"
+        }
       ]
     }
   ]
