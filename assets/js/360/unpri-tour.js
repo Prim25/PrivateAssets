@@ -9,7 +9,7 @@
   var status = document.getElementById('ut-status');
 
   if (!window.pannellum || !window.fetch || !configUrl) {
-    status.textContent = 'Virtual Tour tidak dapat dimuat.';
+    if (status) status.textContent = 'Virtual Tour tidak dapat dimuat.';
     return;
   }
 
@@ -17,23 +17,22 @@
 
   fetch(configUrl, { cache: 'no-cache', mode: 'cors' })
     .then(function (response) {
-      if (!response.ok) {
-        throw new Error('HTTP ' + response.status);
-      }
+      if (!response.ok) throw new Error('HTTP ' + response.status);
       return response.json();
     })
     .then(function (config) {
-      if (!config.scenes || !Array.isArray(config.scenes) ||
-          !config.scenes.length) {
+      if (!Array.isArray(config.scenes) || !config.scenes.length) {
         throw new Error('Konfigurasi scene tidak valid.');
       }
+
       initializeTour(config);
       root.setAttribute('data-ready', 'true');
     })
     .catch(function (error) {
       root.removeAttribute('data-ready');
-      status.textContent =
-        'Gagal memuat konfigurasi Virtual Tour. Silakan refresh halaman.';
+      if (status) {
+        status.textContent = 'Gagal memuat Virtual Tour. Silakan refresh halaman.';
+      }
       console.error('[UNPRI Tour]', error);
     });
 
@@ -50,22 +49,58 @@
 
     var scenes = {};
     var metadata = {};
-    var sceneButtons = [];
+    var shortcutButtons = [];
+    var floorButtons = [];
+    var allButtons = [];
+    var floors = config.floors || [];
     var base = config.panoramaBase || '';
+
+    var loaded = false;
+    var busy = true;
+    var enabled = true;
+    var rotating = false;
+    var visible = true;
+    var held = false;
+    var pointers = {};
+    var keys = {};
+    var timer = null;
+    var motion = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : null;
+
+    if (motion && motion.matches) enabled = false;
+
+    function imageUrl(image) {
+      return new URL(image, base).href;
+    }
+
+    function setStatus(message) {
+      if (status && status.textContent !== message) {
+        status.textContent = message;
+      }
+    }
+
+    function makeElement(tag, className, text) {
+      var element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text != null) element.textContent = text;
+      return element;
+    }
 
     config.scenes.forEach(function (item) {
       if (!item.id || !item.image || scenes[item.id]) {
-        throw new Error('ID atau image scene tidak valid: ' + item.id);
+        throw new Error('Scene tidak valid atau duplikat: ' + item.id);
       }
 
       metadata[item.id] = {
         title: item.title || item.id,
-        area: item.area || ''
+        area: item.area || '',
+        floorId: item.floorId || null
       };
 
       scenes[item.id] = {
         type: 'equirectangular',
-        panorama: new URL(item.image, base).href,
+        panorama: imageUrl(item.image),
         pitch: item.pitch == null ? 0 : item.pitch,
         yaw: item.yaw == null ? 0 : item.yaw,
         hfov: item.hfov == null ? 100 : item.hfov,
@@ -82,18 +117,18 @@
     });
 
     var firstScene = config.firstScene || config.scenes[0].id;
+
     if (!scenes[firstScene]) {
-      throw new Error('firstScene tidak ditemukan.');
+      throw new Error('firstScene tidak ditemukan: ' + firstScene);
     }
 
     Object.keys(scenes).forEach(function (id) {
-      var option = document.createElement('option');
+      var option = makeElement('option', null, metadata[id].title);
       option.value = id;
-      option.textContent = metadata[id].title;
       select.appendChild(option);
 
       scenes[id].hotSpots.forEach(function (spot) {
-        if (!metadata[spot.sceneId]) {
+        if (!scenes[spot.sceneId]) {
           throw new Error('Target hotspot tidak ditemukan: ' + spot.sceneId);
         }
 
@@ -103,51 +138,14 @@
       });
     });
 
-    function addButton(parent, id, label) {
-      if (!scenes[id]) return;
-
-      var button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'ut-location-button';
-      button.textContent = label;
-      button.setAttribute('data-scene', id);
-      button.setAttribute('aria-pressed', 'false');
-      button.disabled = true;
-
-      parent.appendChild(button);
-      sceneButtons.push(button);
-
-      button.addEventListener('click', function () {
-        chooseScene(id);
-      });
-    }
-
-    (config.shortcuts || []).forEach(function (item) {
-      addButton(shortcuts, item.sceneId, item.label);
-    });
-
-    if (lift) {
-      var floors = config.floors || [];
-      lift.hidden = floors.length <= 1;
-
-      if (floors.length > 1) {
-        var heading = document.createElement('span');
-        heading.textContent = 'Lantai';
-        lift.appendChild(heading);
-
-        floors.forEach(function (item) {
-          addButton(lift, item.sceneId, item.label);
-        });
-      }
-    }
-
     function navigationTooltip(element, args) {
       element.innerHTML =
         '<svg class="ut-nav-chevron" viewBox="0 0 48 32" ' +
         'aria-hidden="true" focusable="false">' +
-        '<path d="M7 24 L24 11 L41 24" fill="none" ' +
-        'stroke="white" stroke-width="6" stroke-linecap="round" ' +
-        'stroke-linejoin="round"/></svg>';
+        '<path d="M7 24 L24 11 L41 24" ' +
+        'fill="none" stroke="white" stroke-width="6" ' +
+        'stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>';
 
       element.setAttribute('role', 'link');
       element.setAttribute('tabindex', '0');
@@ -163,18 +161,101 @@
       });
     }
 
-    var motion = window.matchMedia
-      ? window.matchMedia('(prefers-reduced-motion: reduce)')
-      : null;
+    function addShortcut(id, label) {
+      if (!scenes[id] || !shortcuts) return;
 
-    var enabled = !(motion && motion.matches);
-    var loaded = false;
-    var rotating = false;
-    var visible = true;
-    var held = false;
-    var pointers = {};
-    var keys = {};
-    var timer = null;
+      var button = makeElement('button', 'ut-location-button', label);
+      button.type = 'button';
+      button.disabled = true;
+      button.setAttribute('data-scene', id);
+      button.setAttribute('aria-pressed', 'false');
+
+      button.addEventListener('click', function () {
+        chooseScene(id);
+      });
+
+      shortcuts.appendChild(button);
+      shortcutButtons.push(button);
+      allButtons.push(button);
+    }
+
+    (config.shortcuts || []).forEach(function (item) {
+      addShortcut(item.sceneId, item.label);
+    });
+
+    function floorForScene(id) {
+      var item = metadata[id];
+      if (!item) return null;
+
+      if (item.floorId) return String(item.floorId);
+
+      if (item.area === 'Mall') return 'mall';
+      if (item.area === 'Lantai 10') return '10';
+      if (item.area === 'Lantai 12') return '12';
+
+      return null;
+    }
+
+    function buildLift() {
+      if (!lift) return;
+
+      lift.innerHTML = '';
+      floorButtons = [];
+
+      var validFloors = floors.filter(function (floor) {
+        return floor.id != null && scenes[floor.sceneId];
+      });
+
+      if (validFloors.length < 2) {
+        lift.hidden = true;
+        return;
+      }
+
+      var heading = makeElement('span', 'ut-lift-heading', 'LIFT');
+      lift.appendChild(heading);
+
+      validFloors.slice().reverse().forEach(function (floor) {
+        var button = makeElement('button', 'ut-lift-floor', floor.label);
+        button.type = 'button';
+        button.disabled = true;
+        button.title = floor.title;
+        button.setAttribute('data-floor', String(floor.id));
+        button.setAttribute('data-scene', floor.sceneId);
+        button.setAttribute('aria-label', 'Menuju ' + floor.title);
+        button.setAttribute('aria-pressed', 'false');
+
+        button.addEventListener('click', function () {
+          chooseScene(floor.sceneId);
+        });
+
+        lift.appendChild(button);
+        floorButtons.push(button);
+        allButtons.push(button);
+      });
+
+      var footer = makeElement('span', 'ut-lift-footer', 'UNPRI');
+      lift.appendChild(footer);
+    }
+
+    function syncLift(id) {
+      if (!lift) return;
+
+      var currentFloor = floorForScene(id);
+      var hasFloors = floorButtons.length > 1;
+
+      lift.hidden = !currentFloor || !hasFloors;
+
+      floorButtons.forEach(function (button) {
+        var active =
+          button.getAttribute('data-floor') === currentFloor;
+
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+        button.setAttribute('aria-current', active ? 'location' : 'false');
+      });
+    }
+
+    buildLift();
 
     var viewer = window.pannellum.viewer('ut-panorama', {
       default: {
@@ -195,54 +276,68 @@
       scenes: scenes
     });
 
-    function setStatus(message) {
-      if (status.textContent !== message) status.textContent = message;
-    }
+    function controls(isBusy) {
+      busy = isBusy;
 
-    function updateButton() {
-      toggle.textContent = enabled
-        ? 'Putar otomatis: aktif' : 'Putar otomatis';
-      toggle.setAttribute('aria-pressed', String(enabled));
-    }
+      if (select) select.disabled = isBusy;
+      if (toggle) toggle.disabled = isBusy || !loaded;
+      if (reset) reset.disabled = isBusy || !loaded;
 
-    function controls(busy) {
-      select.disabled = busy;
-      toggle.disabled = busy || !loaded;
-      reset.disabled = busy || !loaded;
-      sceneButtons.forEach(function (button) {
-        button.disabled = busy;
+      allButtons.forEach(function (button) {
+        button.disabled = isBusy;
       });
-      panorama.setAttribute('aria-busy', String(busy));
+
+      panorama.setAttribute('aria-busy', String(isBusy));
     }
 
     function syncScene(id) {
       if (!metadata[id]) return;
+
       select.value = id;
       sceneTitle.textContent = metadata[id].title;
       area.textContent = metadata[id].area;
 
-      sceneButtons.forEach(function (button) {
-        button.setAttribute('aria-pressed',
-          String(button.getAttribute('data-scene') === id));
+      shortcutButtons.forEach(function (button) {
+        var active =
+          button.getAttribute('data-scene') === id;
+
+        button.setAttribute('aria-pressed', String(active));
       });
+
+      syncLift(id);
+    }
+
+    function updateAutoButton() {
+      toggle.textContent = enabled
+        ? 'Putar otomatis: aktif'
+        : 'Putar otomatis';
+
+      toggle.setAttribute('aria-pressed', String(enabled));
     }
 
     function stop() {
       window.clearTimeout(timer);
       timer = null;
+
       if (rotating) viewer.stopAutoRotate();
       rotating = false;
     }
 
     function canRotate() {
-      return loaded && enabled && visible && !held &&
-        !Object.keys(keys).length && !document.hidden &&
+      return loaded &&
+        !busy &&
+        enabled &&
+        visible &&
+        !held &&
+        !Object.keys(keys).length &&
+        !document.hidden &&
         document.hasFocus();
     }
 
     function activity() {
       stop();
-      if (!loaded) return;
+
+      if (!loaded || busy) return;
 
       setStatus(enabled
         ? 'Putar otomatis aktif · dimulai setelah 8 detik tanpa aktivitas.'
@@ -253,10 +348,12 @@
       timer = window.setTimeout(function () {
         timer = null;
         if (!canRotate()) return;
+
         viewer.startAutoRotate(1, viewer.getPitch());
         rotating = true;
+
         setStatus('Panorama berputar perlahan · gerakkan untuk berhenti.');
-      }, 8000);
+      }, 3000);
     }
 
     function resetInteraction() {
@@ -267,19 +364,25 @@
     }
 
     function chooseScene(id) {
-      if (!scenes[id] || (loaded && viewer.getScene() === id)) return;
+      if (!scenes[id]) return;
+      if (busy) return;
+      if (loaded && viewer.getScene() === id) return;
+
       stop();
       loaded = false;
       retry.hidden = true;
+
       controls(true);
       syncScene(id);
       setStatus('Memuat ' + metadata[id].title + '...');
+
       viewer.loadScene(id);
     }
 
     viewer.on('load', function () {
       loaded = true;
       retry.hidden = true;
+
       syncScene(viewer.getScene());
       controls(false);
       activity();
@@ -289,6 +392,7 @@
       stop();
       loaded = false;
       retry.hidden = true;
+
       controls(true);
       syncScene(id);
       setStatus('Memuat ' + metadata[id].title + '...');
@@ -298,8 +402,9 @@
       stop();
       loaded = false;
       controls(false);
+
       retry.hidden = false;
-      setStatus('Panorama gagal dimuat. Coba lagi atau pilih lokasi lain.');
+      setStatus('Panorama gagal dimuat. Pilih lokasi lain atau coba lagi.');
     });
 
     select.addEventListener('change', function () {
@@ -309,23 +414,36 @@
     retry.addEventListener('click', function () {
       var id = select.value;
       if (!scenes[id]) return;
-      if (viewer.getScene() === id && viewer.getScene) {
-        viewer.loadScene(id);
-      } else {
-        chooseScene(id);
-      }
+
+      stop();
+      loaded = false;
+      retry.hidden = true;
+
+      controls(true);
+      setStatus('Memuat ulang ' + metadata[id].title + '...');
+
+      viewer.loadScene(id);
     });
 
     reset.addEventListener('click', function () {
+      if (!loaded) return;
+
       activity();
+
       var scene = scenes[viewer.getScene()];
-      viewer.lookAt(scene.pitch, scene.yaw, scene.hfov,
-        motion && motion.matches ? 0 : 600);
+      if (!scene) return;
+
+      viewer.lookAt(
+        scene.pitch,
+        scene.yaw,
+        scene.hfov,
+        motion && motion.matches ? 0 : 600
+      );
     });
 
     toggle.addEventListener('click', function () {
       enabled = !enabled;
-      updateButton();
+      updateAutoButton();
       activity();
     });
 
@@ -350,28 +468,41 @@
       });
     } else {
       document.addEventListener('mousedown', function () {
-        held = true; activity();
+        held = true;
+        activity();
       });
+
       document.addEventListener('mouseup', function () {
-        held = false; activity();
+        held = false;
+        activity();
       });
+
       document.addEventListener('touchstart', function () {
-        held = true; activity();
+        held = true;
+        activity();
       });
+
       document.addEventListener('touchend', function (event) {
-        held = event.touches.length > 0; activity();
+        held = event.touches.length > 0;
+        activity();
       });
+
       document.addEventListener('touchcancel', function () {
-        held = false; activity();
+        held = false;
+        activity();
       });
     }
 
     document.addEventListener('keydown', function (event) {
-      keys[event.keyCode] = true; activity();
+      keys[event.keyCode] = true;
+      activity();
     });
+
     document.addEventListener('keyup', function (event) {
-      delete keys[event.keyCode]; activity();
+      delete keys[event.keyCode];
+      activity();
     });
+
     document.addEventListener('visibilitychange', function () {
       resetInteraction();
       if (!document.hidden) activity();
@@ -387,6 +518,7 @@
         visible = entries[0].isIntersecting;
         activity();
       }, { threshold: 0 });
+
       observer.observe(panorama);
     }
 
@@ -394,11 +526,12 @@
       var sizeObserver = new window.ResizeObserver(function () {
         viewer.resize();
       });
+
       sizeObserver.observe(panorama);
     }
 
     syncScene(firstScene);
     controls(true);
-    updateButton();
+    updateAutoButton();
   }
 }());
