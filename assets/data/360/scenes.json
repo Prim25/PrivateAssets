@@ -34,6 +34,13 @@
       "label": "12",
       "title": "Lantai 12",
       "sceneId": "l12_GedungA"
+    },
+
+    {
+      "id": "15",
+      "label": "15",
+      "title": "Lantai 15",
+      "sceneId": "l15_Lift"
     }
   ],
   "scenes": [
@@ -492,6 +499,128 @@
           "pitch": -3.7273,
           "yaw": -172.6365,
           "sceneId": "l12_GedungB"
+        }
+      ]
+    },
+
+    {
+      "id": "l15_Lift",
+      "title": "Lift Lantai 15",
+      "area": "Lantai 15",
+      "image": "./assets/360/lantai_15/Lift_L15.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -6.1006,
+          "yaw": -153.0002,
+          "sceneId": "l15_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l15_GedungA",
+      "title": "Lorong A Lantai 15 · 01",
+      "area": "Lantai 15",
+      "image": "./assets/360/lantai_15/Lorng_A_Lantai_15-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -12.6204,
+          "yaw": -56.4092,
+          "sceneId": "l15_Lift"
+        },
+        {
+          "pitch": -3.086,
+          "yaw": 92.2891,
+          "sceneId": "l15_GedungA2"
+        },
+        {
+          "pitch": -4.7458,
+          "yaw": -177.3904,
+          "sceneId": "l15_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l15_GedungA2",
+      "title": "Lorong A Lantai 15 · 02",
+      "area": "Lantai 15",
+      "image": "./assets/360/lantai_15/Lorng_A_Lantai_15-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -5.8348,
+          "yaw": 3.6124,
+          "sceneId": "l15_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l15_GedungU",
+      "title": "Lorong U Lantai 15",
+      "area": "Lantai 15",
+      "image": "./assets/360/lantai_15/Lorong_U_Lantai_15.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -10.6277,
+          "yaw": -99.1592,
+          "sceneId": "l15_GedungA"
+        },
+        {
+          "pitch": -1.2681,
+          "yaw": 80.1776,
+          "sceneId": "l15_GedungB"
+        },
+        {
+          "pitch": -7.9464,
+          "yaw": -34.5413,
+          "sceneId": "l16_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l15_GedungB",
+      "title": "Lorong B Lantai 15 · 01",
+      "area": "Lantai 15",
+      "image": "./assets/360/lantai_15/Lorong_B_Lantai_15-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -3.5275,
+          "yaw": 102.8361,
+          "sceneId": "l15_GedungU"
+        },
+        {
+          "pitch": -4.1329,
+          "yaw": -168.3649,
+          "sceneId": "l15_GedungB2"
+        }
+      ]
+    },
+    {
+      "id": "l15_GedungB2",
+      "title": "Lorong B Lantai 15 · 02",
+      "area": "Lantai 15",
+      "image": "./assets/360/lantai_15/Lorong_B_Lantai_15-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -5.8618,
+          "yaw": 5.5265,
+          "sceneId": "l15_GedungB"
         }
       ]
     }
