@@ -1,4 +1,3 @@
-
 {
   "version": 1,
   "firstScene": "depanGedung",
@@ -437,8 +436,8 @@
           "sceneId": "l12_GedungA"
         },
         {
-          "pitch": -1.0404,
-          "yaw": 12.8827,
+          "pitch": -10.2852,
+          "yaw": 159.1257,
           "sceneId": "l12_GedungA3"
         }
       ]
