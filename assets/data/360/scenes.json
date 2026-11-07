@@ -2,26 +2,19 @@
   "version": 1,
   "firstScene": "depanGedung",
   "panoramaBase": "https://prim25.github.io/PrivateAssets/assets/images/360/",
-  "shortcuts": [
-    {
-      "sceneId": "depanGedung",
-      "label": "Halaman depan"
-    },
-    {
-      "sceneId": "depanMall",
-      "label": "Mall kampus"
-    },
-    {
-      "sceneId": "menujuParkiran",
-      "label": "Area parkir"
-    }
-  ],
+
   "floors": [
     {
       "id": "mall",
       "label": "M",
       "title": "Mall Kampus",
       "sceneId": "lobiMall"
+    },
+    {
+      "id": "gf",
+      "label": "GF",
+      "title": "Ground Floor",
+      "sceneId": "gf"
     },
     {
       "id": "10",
@@ -41,6 +34,36 @@
       "label": "15",
       "title": "Lantai 15",
       "sceneId": "l15_Lift"
+    },
+    {
+      "id": "16",
+      "label": "16",
+      "title": "Lantai 16",
+      "sceneId": "l16_Lift"
+    },
+    {
+      "id": "17",
+      "label": "17",
+      "title": "Lantai 17",
+      "sceneId": "l17_Lift"
+    },
+    {
+      "id": "19",
+      "label": "19",
+      "title": "Lantai 19",
+      "sceneId": "l19_Lift"
+    },
+    {
+      "id": "20",
+      "label": "20",
+      "title": "Lantai 20",
+      "sceneId": "l20_Lift"
+    },
+    {
+      "id": "22",
+      "label": "22",
+      "title": "Lantai 22",
+      "sceneId": "l22_Lift"
     }
   ],
   "scenes": [
@@ -290,8 +313,8 @@
           "sceneId": "depanMall"
         },
         {
-          "pitch": -1.4519,
-          "yaw": 88.2823,
+          "pitch": -10.7514,
+          "yaw": 88.9669,
           "sceneId": "lobiMall2"
         }
       ]
@@ -330,6 +353,28 @@
           "pitch": -3.5262,
           "yaw": -163.1805,
           "sceneId": "depanMall"
+        },
+        {
+          "pitch": -9.8136,
+          "yaw": 3.5654,
+          "type": "scene",
+          "sceneId": "gf"
+        }
+      ]
+    },
+    {
+      "id": "gf",
+      "title": "Ground Floor",
+      "area": "Mall",
+      "image": "GF/GF-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -16.2903,
+          "yaw": 88.5688,
+          "sceneId": "lobiMall2"
         }
       ]
     },
@@ -513,11 +558,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {
-          "pitch": -6.1006,
-          "yaw": -153.0002,
-          "sceneId": "l15_GedungA"
-        }
+        { "pitch": -6.1006, "yaw": -153.0002, "sceneId": "l15_GedungA" }
       ]
     },
     {
@@ -529,21 +570,9 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {
-          "pitch": -12.6204,
-          "yaw": -56.4092,
-          "sceneId": "l15_Lift"
-        },
-        {
-          "pitch": -3.086,
-          "yaw": 92.2891,
-          "sceneId": "l15_GedungA2"
-        },
-        {
-          "pitch": -4.7458,
-          "yaw": -177.3904,
-          "sceneId": "l15_GedungU"
-        }
+        { "pitch": -12.6204, "yaw": -56.4092, "sceneId": "l15_Lift" },
+        { "pitch": -3.086, "yaw": 92.2891, "sceneId": "l15_GedungA2" },
+        { "pitch": -4.7458, "yaw": -177.3904, "sceneId": "l15_GedungU" }
       ]
     },
     {
@@ -555,11 +584,7 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {
-          "pitch": -5.8348,
-          "yaw": 3.6124,
-          "sceneId": "l15_GedungA"
-        }
+        { "pitch": -5.8348, "yaw": 3.6124, "sceneId": "l15_GedungA" }
       ]
     },
     {
@@ -571,15 +596,13 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
+        { "pitch": -10.6277, "yaw": -99.1592, "sceneId": "l15_GedungA" },
+        { "pitch": -1.2681, "yaw": 80.1776, "sceneId": "l15_GedungB" },
         {
-          "pitch": -10.6277,
-          "yaw": -99.1592,
-          "sceneId": "l15_GedungA"
-        },
-        {
-          "pitch": -1.2681,
-          "yaw": 80.1776,
-          "sceneId": "l15_GedungB"
+          "pitch": -7.9464,
+          "yaw": -34.5413,
+          "type": "scene",
+          "sceneId": "l16_GedungU"
         }
       ]
     },
@@ -592,16 +615,8 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
-        {
-          "pitch": -3.5275,
-          "yaw": 102.8361,
-          "sceneId": "l15_GedungU"
-        },
-        {
-          "pitch": -4.1329,
-          "yaw": -168.3649,
-          "sceneId": "l15_GedungB2"
-        }
+        { "pitch": -3.5275, "yaw": 102.8361, "sceneId": "l15_GedungU" },
+        { "pitch": -4.1329, "yaw": -168.3649, "sceneId": "l15_GedungB2" }
       ]
     },
     {
@@ -613,10 +628,656 @@
       "yaw": 0,
       "hfov": 100,
       "hotSpots": [
+        { "pitch": -5.8618, "yaw": 5.5265, "sceneId": "l15_GedungB" }
+      ]
+    },
+
+    {
+      "id": "l16_Lift",
+      "title": "Lift Lantai 16",
+      "area": "Lantai 16",
+      "image": "lantai_16/Lift_L16.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
         {
-          "pitch": -5.8618,
-          "yaw": 5.5265,
-          "sceneId": "l15_GedungB"
+          "pitch": -6.1006,
+          "yaw": -153.0002,
+          "sceneId": "l16_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l16_GedungA",
+      "title": "Lorong A Lantai 16",
+      "area": "Lantai 16",
+      "image": "lantai_16/Lorong_A_Lantai_16.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -7.7028,
+          "yaw": 120.936,
+          "sceneId": "l16_Lift"
+        },
+        {
+          "pitch": -10.57,
+          "yaw": 1.0392,
+          "sceneId": "l16_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l16_GedungU",
+      "title": "Lorong U Lantai 16 · 01",
+      "area": "Lantai 16",
+      "image": "lantai_16/Lorong_U_Lantai_16.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -11.2645,
+          "yaw": -87.1856,
+          "sceneId": "l16_GedungA"
+        },
+        {
+          "pitch": -4.948,
+          "yaw": 90.3801,
+          "sceneId": "l16_GedungU2"
+        },
+        {
+          "pitch": -13.8682,
+          "yaw": 20.8416,
+          "sceneId": "l15_GedungU"
+        },
+        {
+          "pitch": -7.9453,
+          "yaw": -20.5334,
+          "sceneId": "l17_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l16_GedungU2",
+      "title": "Lorong U Lantai 16 · 02",
+      "area": "Lantai 16",
+      "image": "lantai_16/Lorong_U_Lantai_16-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -9.8964,
+          "yaw": -86.6058,
+          "sceneId": "l16_GedungB"
+        }
+      ]
+    },
+    {
+      "id": "l16_GedungB",
+      "title": "Lorong B Lantai 16 · 01",
+      "area": "Lantai 16",
+      "image": "lantai_16/Lorong_B_Lantai_16-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -11.6336,
+          "yaw": -89.4389,
+          "sceneId": "l16_GedungU2"
+        },
+        {
+          "pitch": -12.3122,
+          "yaw": 1.4613,
+          "sceneId": "l16_GedungB2"
+        }
+      ]
+    },
+    {
+      "id": "l16_GedungB2",
+      "title": "Lorong B Lantai 16 · 02",
+      "area": "Lantai 16",
+      "image": "lantai_16/Lorong_B_Lantai_16-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -4.389,
+          "yaw": 100.2677,
+          "sceneId": "l16_GedungB"
+        }
+      ]
+    },
+
+    {
+      "id": "l17_Lift",
+      "title": "Lift Lantai 17",
+      "area": "Lantai 17",
+      "image": "lantai_17/Lift_L17.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -6.4145,
+          "yaw": -156.7814,
+          "sceneId": "l17_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l17_GedungA",
+      "title": "Lorong A Lantai 17 · 01",
+      "area": "Lantai 17",
+      "image": "lantai_17/Lorng_A_Lantai_17-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -11.4807,
+          "yaw": -96.5166,
+          "sceneId": "l17_GedungA2"
+        },
+        {
+          "pitch": -10.0706,
+          "yaw": 118.5789,
+          "sceneId": "l17_Lift"
+        },
+        {
+          "pitch": -10.4441,
+          "yaw": -3.9606,
+          "sceneId": "l17_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l17_GedungA2",
+      "title": "Lorong A Lantai 17 · 02",
+      "area": "Lantai 17",
+      "image": "lantai_17/Lorong_A_Lantai_17-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -2.4638,
+          "yaw": 92.6445,
+          "sceneId": "l17_GedungA"
+        },
+        {
+          "pitch": -9.582,
+          "yaw": -88.2458,
+          "sceneId": "l17_GedungA3"
+        }
+      ]
+    },
+    {
+      "id": "l17_GedungA3",
+      "title": "Lorong A Lantai 17 · 03",
+      "area": "Lantai 17",
+      "image": "lantai_17/Lorng_A_Lantai_17-3.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -4.4445,
+          "yaw": 112.5927,
+          "sceneId": "l17_GedungA2"
+        }
+      ]
+    },
+    {
+      "id": "l17_GedungU",
+      "title": "Lorong U Lantai 17",
+      "area": "Lantai 17",
+      "image": "lantai_17/Lorong_U_Lantai_17.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -10.8331,
+          "yaw": -83.1698,
+          "sceneId": "l17_GedungA"
+        },
+        {
+          "pitch": -6.083,
+          "yaw": 97.6279,
+          "sceneId": "l17_GedungB"
+        },
+        {
+          "pitch": -13.5037,
+          "yaw": 27.581,
+          "sceneId": "l16_GedungU"
+        },
+        {
+          "pitch": -7.6311,
+          "yaw": -16.4626,
+          "type": "scene",
+          "sceneId": "l19_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l17_GedungB",
+      "title": "Lorong B Lantai 17",
+      "area": "Lantai 17",
+      "image": "lantai_17/Lorong_B_Lantai_17-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -7.4543,
+          "yaw": -88.6145,
+          "sceneId": "l17_GedungU"
+        }
+      ]
+    },
+
+    {
+      "id": "l19_Lift",
+      "title": "Lift Lantai 19",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lift_L19.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -10.0236,
+          "yaw": -148.8075,
+          "sceneId": "l19_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l19_GedungA",
+      "title": "Lorong A Lantai 19 · 01",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lorong_A_Lantai_19-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -12.7679,
+          "yaw": 23.2136,
+          "sceneId": "l19_Lift"
+        },
+        {
+          "pitch": -12.6786,
+          "yaw": 169.937,
+          "sceneId": "l19_GedungA2"
+        },
+        {
+          "pitch": -10.7879,
+          "yaw": -98.1578,
+          "sceneId": "l19_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l19_GedungA2",
+      "title": "Lorong A Lantai 19 · 02",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lorong_A_Lantai_19-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -7.7609,
+          "yaw": 178.771,
+          "sceneId": "l19_GedungA"
+        },
+        {
+          "pitch": -10.009,
+          "yaw": -0.6396,
+          "sceneId": "l19_GedungA3"
+        }
+      ]
+    },
+    {
+      "id": "l19_GedungA3",
+      "title": "Lorong A Lantai 19 · 03",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lorong_A_Lantai_19-3.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -4.4445,
+          "yaw": 112.5927,
+          "sceneId": "l19_GedungA2"
+        }
+      ]
+    },
+    {
+      "id": "l19_GedungU",
+      "title": "Lorong U Lantai 19",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lorong_U_Lantai_19.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -10.7879,
+          "yaw": -98.1578,
+          "sceneId": "l19_GedungA"
+        },
+        {
+          "pitch": -5.7914,
+          "yaw": 94.6501,
+          "sceneId": "l19_GedungB"
+        },
+        {
+          "pitch": -13.5037,
+          "yaw": 27.581,
+          "sceneId": "l17_GedungU"
+        },
+        {
+          "pitch": -7.6311,
+          "yaw": -16.4626,
+          "type": "scene",
+          "sceneId": "l20_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l19_GedungB",
+      "title": "Lorong B Lantai 19 · 01",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lorong_B_Lantai_19-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -10.1394,
+          "yaw": -86.7204,
+          "sceneId": "l19_GedungU"
+        },
+        {
+          "pitch": -7.3793,
+          "yaw": 3.8843,
+          "sceneId": "l19_GedungB2"
+        }
+      ]
+    },
+    {
+      "id": "l19_GedungB2",
+      "title": "Lorong B Lantai 19 · 02",
+      "area": "Lantai 19",
+      "image": "lantai_19/Lorong_B_Lantai_19-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -5.0013,
+          "yaw": -174.129,
+          "sceneId": "l19_GedungB"
+        }
+      ]
+    },
+
+    {
+      "id": "l20_Lift",
+      "title": "Lift Lantai 20",
+      "area": "Lantai 20",
+      "image": "lantai_20/depan_lift_L20.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -8.5152,
+          "yaw": 27.755,
+          "sceneId": "l20_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l20_GedungA",
+      "title": "Lorong A Lantai 20 · 01",
+      "area": "Lantai 20",
+      "image": "lantai_20/Lorng_A_Lantai_20-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -12.7966,
+          "yaw": -56.0523,
+          "sceneId": "l20_Lift"
+        },
+        {
+          "pitch": -5.0523,
+          "yaw": 91.1277,
+          "sceneId": "l20_GedungA2"
+        },
+        {
+          "pitch": -7.635,
+          "yaw": -178.5486,
+          "sceneId": "l20_GedungU"
+        }
+      ]
+    },
+    {
+      "id": "l20_GedungA2",
+      "title": "Lorong A Lantai 20 · 02",
+      "area": "Lantai 20",
+      "image": "lantai_20/Lorong_A_Lantai_20-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -7.1637,
+          "yaw": 2.2612,
+          "sceneId": "l20_GedungA"
+        }
+      ]
+    },
+    {
+      "id": "l20_GedungU",
+      "title": "Lorong U Lantai 20",
+      "area": "Lantai 20",
+      "image": "lantai_20/Lorong_U_Lantai_20.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -10.4322,
+          "yaw": 34.5665,
+          "sceneId": "l20_GedungA"
+        },
+        {
+          "pitch": -7.1058,
+          "yaw": -147.1526,
+          "sceneId": "l20_GedungB"
+        },
+        {
+          "pitch": -11.9785,
+          "yaw": 146.8206,
+          "sceneId": "l19_GedungU"
+        },
+        {
+          "pitch": -4.9858,
+          "yaw": 101.543,
+          "type": "scene",
+          "sceneId": "l22_Lorong2"
+        }
+      ]
+    },
+    {
+      "id": "l20_GedungB",
+      "title": "Lorong B Lantai 20 · 01",
+      "area": "Lantai 20",
+      "image": "lantai_20/Lorong_B_Lantai_20-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -9.6873,
+          "yaw": -90.5053,
+          "sceneId": "l20_GedungU"
+        },
+        {
+          "pitch": -9.2021,
+          "yaw": 0.7318,
+          "sceneId": "l20_GedungB2"
+        }
+      ]
+    },
+    {
+      "id": "l20_GedungB2",
+      "title": "Lorong B Lantai 20 · 02",
+      "area": "Lantai 20",
+      "image": "lantai_20/Lorong_B_Lantai_20-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -8.7729,
+          "yaw": 15.2329,
+          "sceneId": "l20_GedungB"
+        }
+      ]
+    },
+
+    {
+      "id": "l22_Lift",
+      "title": "Lift Lantai 22",
+      "area": "Lantai 22",
+      "image": "lantai_22/depan_lift_L22.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -9.1675,
+          "yaw": -179.4413,
+          "sceneId": "l22_Lorong"
+        }
+      ]
+    },
+    {
+      "id": "l22_Lorong",
+      "title": "Lorong Utama Lantai 22 · 01",
+      "area": "Lantai 22",
+      "image": "lantai_22/Lorong_L22-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -13.1359,
+          "yaw": -84.7955,
+          "sceneId": "l22_Lift"
+        },
+        {
+          "pitch": -10.7077,
+          "yaw": 178.6049,
+          "sceneId": "l22_Lorong2"
+        },
+        {
+          "pitch": -13.054,
+          "yaw": 91.9219,
+          "sceneId": "guestHouse"
+        }
+      ]
+    },
+    {
+      "id": "l22_Lorong2",
+      "title": "Lorong Utama Lantai 22 · 02",
+      "area": "Lantai 22",
+      "image": "lantai_22/Lorong_L22-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -8.7339,
+          "yaw": 179.6048,
+          "sceneId": "l22_Lorong"
+        },
+        {
+          "pitch": -13.2939,
+          "yaw": -47.8021,
+          "sceneId": "l20_GedungU"
+        },
+        {
+          "pitch": -22.8236,
+          "yaw": 93.1134,
+          "sceneId": "cafePrima"
+        }
+      ]
+    },
+    {
+      "id": "guestHouse",
+      "title": "Guest House",
+      "area": "Lantai 22",
+      "image": "guest_house/GUEST_HOUSE.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -6.8916,
+          "yaw": 173.5648,
+          "sceneId": "l22_Lorong"
+        }
+      ]
+    },
+
+    {
+      "id": "cafePrima",
+      "title": "Cafe Prima Sky · 01",
+      "area": "Lantai 22",
+      "image": "lantai_22/Caffe_Prima_Sky_L22-1.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -11.8181,
+          "yaw": 95.1964,
+          "sceneId": "l22_Lorong2"
+        },
+        {
+          "pitch": -12.4343,
+          "yaw": -168.2555,
+          "sceneId": "cafePrima2"
+        }
+      ]
+    },
+    {
+      "id": "cafePrima2",
+      "title": "Cafe Prima Sky · 02",
+      "area": "Lantai 22",
+      "image": "lantai_22/Caffe_Prima_Sky_L22-2.jpg",
+      "pitch": 0,
+      "yaw": 0,
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "pitch": -2.5123,
+          "yaw": -3.6607,
+          "sceneId": "cafePrima"
         }
       ]
     }
