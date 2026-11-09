@@ -46,8 +46,7 @@
     var reset = document.getElementById("ut-reset");
     var retry = document.getElementById("ut-retry");
     var panorama = document.getElementById("ut-panorama");
-
-    var liftToggle = document.getElementById("ut-lift-toggle");
+    var viewerStage = root.querySelector(".ut-viewer-stage");
 
     var scenes = {};
     var metadata = {};
@@ -66,14 +65,54 @@
     var pointers = {};
     var keys = {};
     var timer = null;
+    var isLiftOpen = false;
+
     var motion = window.matchMedia
       ? window.matchMedia("(prefers-reduced-motion: reduce)")
       : null;
 
     if (motion && motion.matches) enabled = false;
 
-    var isLiftOpen = false;
+    // ----------------------------------------------------
+    // GENERATE DYNAMIC LIFT TOGGLE BUTTON VIA JS
+    // ----------------------------------------------------
+    var liftToggle = null;
 
+    function createLiftToggle() {
+      if (!viewerStage) return;
+
+      liftToggle = document.createElement("button");
+      liftToggle.id = "ut-lift-toggle";
+      liftToggle.className = "ut-lift-toggle";
+      liftToggle.type = "button";
+      liftToggle.setAttribute("aria-expanded", "false");
+      liftToggle.setAttribute(
+        "aria-label",
+        "Tampilkan/Sembunyikan daftar lantai",
+      );
+
+      liftToggle.innerHTML =
+        '<span class="ut-lift-icon" aria-hidden="true"></span>' +
+        "<span>Pilih Lantai</span>";
+
+      liftToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleLift();
+      });
+
+      if (lift) {
+        viewerStage.insertBefore(liftToggle, lift);
+      } else {
+        viewerStage.appendChild(liftToggle);
+      }
+    }
+
+    // Panggil pembuatan tombol dinamis
+    createLiftToggle();
+
+    // ----------------------------------------------------
+    // KONTROL TOGGLE LIFT (OPEN/CLOSE)
+    // ----------------------------------------------------
     function toggleLift(open) {
       if (!lift) return;
 
@@ -89,12 +128,6 @@
         liftToggle.setAttribute("aria-expanded", String(isLiftOpen));
         liftToggle.classList.toggle("is-active", isLiftOpen);
       }
-    }
-    if (liftToggle) {
-      liftToggle.addEventListener("click", function (e) {
-        e.stopPropagation();
-        toggleLift();
-      });
     }
 
     // Tutup lift jika user mengeklik area panorama di luar widget lift
@@ -309,7 +342,7 @@
       if (areaName.includes("17") || idName.includes("l17")) return "17";
       if (areaName.includes("19") || idName.includes("l19")) return "19";
       if (areaName.includes("20") || idName.includes("l20")) return "20";
-      if (areaName.includes("22") || idName.includes("l20")) return "22";
+      if (areaName.includes("22") || idName.includes("l22")) return "22";
 
       return "mall";
     }
@@ -359,7 +392,6 @@
 
       var currentFloor = floorForScene(id);
 
-      // Pertahankan visibilitas sesuai state isLiftOpen
       lift.hidden = !isLiftOpen;
 
       renderShortcutsForFloor(currentFloor, id);
@@ -469,9 +501,7 @@
         return;
       }
 
-      setStatus(
-        "Putar otomatis aktif ",
-      );
+      setStatus("Putar otomatis aktif ");
 
       if (!canRotate()) return;
 
