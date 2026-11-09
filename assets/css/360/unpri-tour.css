@@ -8,9 +8,9 @@
   --ut-soft: #f8f5ff;
 
   width: 100%;
-  max-width: 1160px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 32px 24px 40px;
+  padding: 16px 24px 24px;
   box-sizing: border-box;
   color: var(--ut-text);
   font-family: Arial, Helvetica, sans-serif;
@@ -180,7 +180,9 @@
 #unpri-tour #ut-panorama {
   position: relative;
   width: 100%;
-  height: clamp(420px, 62vh, 650px);
+  /* height: clamp(420px, 62vh, 650px); */
+  /* height: clamp(460px, 62vh, 650px); */
+  height: clamp(520px, 76vh, 820px);
   min-height: 0;
   max-height: none;
   overflow: hidden;
@@ -188,13 +190,89 @@
   text-align: left;
 }
 
+#unpri-tour .ut-lift-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 20px;
+  background: var(--ut-primary, #4b168c);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(75, 22, 140, 0.35);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#unpri-tour .ut-lift-toggle:hover {
+  background: #380e6b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(75, 22, 140, 0.45);
+}
+
+#unpri-tour .ut-lift-toggle.is-active,
+#unpri-tour .ut-lift-toggle[aria-expanded="true"] {
+  background: #380e6b;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#unpri-tour .ut-floor-lift {
+  position: absolute;
+  top: 64px; /* Tepat di bawah tombol trigger Pilih Lantai */
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 60px;
+
+  /* Kunci perbaikan: Tinggi mengikuti konten, tidak tertarik memanjang ke bawah */
+  height: max-content;
+  max-height: calc(
+    100% - 80px
+  ); /* Batas aman di layar kecil agar tetap bisa di-scroll */
+
+  overflow-y: auto;
+  padding: 8px 4px;
+  border: 1px solid rgba(229, 220, 236, 0.9);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+#unpri-tour .ut-floor-lift::-webkit-scrollbar {
+  width: 4px;
+}
+
+#unpri-tour .ut-floor-lift::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#unpri-tour .ut-floor-lift::-webkit-scrollbar-thumb {
+  background: rgba(75, 22, 140, 0.25);
+  border-radius: 4px;
+}
+
 #unpri-tour #ut-panorama:fullscreen,
 #unpri-tour #ut-panorama:-webkit-full-screen {
   width: 100vw;
   height: 100vh;
 }
-
-/* Bottom Information */
 
 #unpri-tour .ut-bottom-bar {
   display: flex;
@@ -250,8 +328,6 @@
   border-color: #f0dda1;
 }
 
-/* Feedback */
-
 #unpri-tour .ut-feedback {
   display: flex;
   align-items: center;
@@ -266,8 +342,6 @@
   font-size: 11px;
   line-height: 1.6;
 }
-
-/* Guide */
 
 #unpri-tour .ut-guide {
   display: flex;
@@ -287,46 +361,27 @@
   font-weight: 800;
 }
 
-/* Floor Lift */
-
-#unpri-tour .ut-floor-lift {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  width: 68px;
-  padding: 10px;
-  border: 1px solid #e5dcec;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 8px 26px rgba(42, 7, 63, 0.14);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
 #unpri-tour .ut-lift-heading {
   display: block;
-  padding: 3px 0 5px;
+  flex: 0 0 auto;
+  padding: 2px 0;
   color: var(--ut-primary);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 2px;
-  line-height: 1.4;
+  letter-spacing: 1.5px;
+  line-height: 1;
   text-align: center;
 }
 
 #unpri-tour .ut-lift-floor {
   display: flex;
+  flex: 0 0 auto; /* Supaya ukuran button tidak mengkerut saat di-scroll */
   align-items: center;
   justify-content: center;
-  width: 46px;
-  min-width: 46px;
-  height: 46px;
-  min-height: 46px;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  min-height: 42px;
   margin: 0;
   padding: 0;
   border: 1px solid #e7e1ed;
@@ -334,7 +389,7 @@
   background: #fff;
   color: #544363;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 800;
   line-height: 1;
   box-shadow: none;
@@ -359,7 +414,6 @@
   border-color: var(--ut-primary);
   box-shadow: 0 3px 10px rgba(75, 22, 140, 0.2);
 }
-
 #unpri-tour .ut-lift-floor.is-active:hover {
   background: var(--ut-primary-dark);
   color: #fff;
@@ -367,16 +421,15 @@
 
 #unpri-tour .ut-lift-footer {
   display: block;
-  padding-top: 4px;
+  flex: 0 0 auto;
+  padding-top: 2px;
   color: #9e92aa;
   font-size: 8px;
   font-weight: 800;
   letter-spacing: 1px;
-  line-height: 1.4;
+  line-height: 1;
   text-align: center;
 }
-
-/* Panorama Navigation Arrows */
 
 #unpri-tour .ut-nav-hotspot {
   display: flex;
@@ -526,11 +579,13 @@
   }
 
   #unpri-tour .ut-floor-lift {
-    top: 10px;
-    right: 10px;
-    width: 58px;
+    top: 60px;
+    right: 12px;
+    width: 52px;
+    height: max-content;
+    max-height: calc(100% - 70px);
     gap: 5px;
-    padding: 7px;
+    padding: 6px 4px;
     border-radius: 12px;
   }
 

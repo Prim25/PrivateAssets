@@ -47,6 +47,8 @@
     var retry = document.getElementById("ut-retry");
     var panorama = document.getElementById("ut-panorama");
 
+    var liftToggle = document.getElementById("ut-lift-toggle");
+
     var scenes = {};
     var metadata = {};
     var shortcutButtons = [];
@@ -69,6 +71,44 @@
       : null;
 
     if (motion && motion.matches) enabled = false;
+
+    var isLiftOpen = false;
+
+    function toggleLift(open) {
+      if (!lift) return;
+
+      if (typeof open === "boolean") {
+        isLiftOpen = open;
+      } else {
+        isLiftOpen = !isLiftOpen;
+      }
+
+      lift.hidden = !isLiftOpen;
+
+      if (liftToggle) {
+        liftToggle.setAttribute("aria-expanded", String(isLiftOpen));
+        liftToggle.classList.toggle("is-active", isLiftOpen);
+      }
+    }
+    if (liftToggle) {
+      liftToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleLift();
+      });
+    }
+
+    // Tutup lift jika user mengeklik area panorama di luar widget lift
+    document.addEventListener("click", function (e) {
+      if (
+        isLiftOpen &&
+        lift &&
+        !lift.contains(e.target) &&
+        liftToggle &&
+        !liftToggle.contains(e.target)
+      ) {
+        toggleLift(false);
+      }
+    });
 
     function imageUrl(image) {
       return new URL(image, base).href;
@@ -302,6 +342,7 @@
 
           button.addEventListener("click", function () {
             chooseScene(floor.sceneId);
+            toggleLift(false);
           });
 
           lift.appendChild(button);
@@ -318,7 +359,8 @@
 
       var currentFloor = floorForScene(id);
 
-      lift.hidden = false;
+      // Pertahankan visibilitas sesuai state isLiftOpen
+      lift.hidden = !isLiftOpen;
 
       renderShortcutsForFloor(currentFloor, id);
 
@@ -428,7 +470,7 @@
       }
 
       setStatus(
-        "Putar otomatis aktif · dimulai setelah 5 detik tanpa aktivitas.",
+        "Putar otomatis aktif ",
       );
 
       if (!canRotate()) return;
@@ -443,7 +485,7 @@
         setStatus(
           "Panorama berputar perlahan · gerakkan kursor untuk berhenti.",
         );
-      }, 5000);
+      }, 1000);
     }
 
     function resetInteraction() {
