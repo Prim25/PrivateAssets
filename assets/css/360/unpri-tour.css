@@ -202,7 +202,7 @@
   height: 40px;
   padding: 0 16px;
   border: none;
-  border-radius: 20px;
+  border-radius: 13px;
   background: var(--ut-primary, #4b168c);
   color: #ffffff;
   font-family: inherit;
